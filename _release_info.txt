@@ -1,0 +1,9 @@
+-- BACKLOG --
+
+-- FUTURE --
+
+-- CURRENT --
+Zeta : v0.01
+- Initial Release with base functional binaries
+
+-- ANTIQUATED --

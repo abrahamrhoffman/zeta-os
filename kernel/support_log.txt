@@ -1,0 +1,6 @@
+CPU Count :: Increased to 128 max
+NUMA :: Full support and emulation
+X2APIC :: High IRQ Count Support
+IPMI :: top-level message handler for fancy IPMI controls
+Mellanox :: Full support with latest modules
+InfiniBand :: Full support with latest modules
