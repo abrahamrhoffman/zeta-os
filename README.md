@@ -2,10 +2,10 @@
 The zeta serverless operating system
 
 ```
-........   
+........
 .  ....           Zeta-OS : A 50 MB Serverless OS
-  ....  .  https://www.github.com/abrahamrhoffman/zeta-os
- ........        Current Build : v0.01 [09-30-2018]
+  ....  .        Current Build : v0.01 [09-30-2018]
+ ........
 ```
 
 ### Features
