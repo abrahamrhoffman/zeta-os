@@ -3,8 +3,8 @@ The zeta serverless operating system
 
 ```
 ........
-.  ....           Zeta-OS : A 50 MB Serverless OS
-  ....  .        Current Build : v0.01 [09-30-2018]
+.  ....        Zeta-OS : A 50 MB Function OS
+  ....  .    Current Build: v0.01 [09-30-2018]
  ........
 ```
 
