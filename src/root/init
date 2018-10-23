@@ -1,0 +1,1 @@
+exec /bin/python -c "while True: print 'hi'"

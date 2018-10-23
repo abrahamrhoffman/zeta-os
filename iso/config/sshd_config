@@ -1,4 +1,0 @@
-AuthorizedKeysFile	.ssh/authorized_keys
-UsePrivilegeSeparation no
-PermitRootLogin no
-AllowUsers zeta
