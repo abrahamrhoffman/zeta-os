@@ -1,4 +1,3 @@
-#!/sbin/python
+#!/bin/sh
 
-while True:
-  print("hi")
+exec /sbin/python -c "print 'hi'"
