@@ -1,3 +1,2 @@
-#!/bin/sh
-echo `ls`
-python -c "echo 'hi'"
+#!/bin/python
+print 'hi'
