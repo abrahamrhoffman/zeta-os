@@ -1,1 +1,4 @@
-exec /bin/python -c "while True: print 'hi'"
+#!/bin/python
+
+while True:
+  print("hi")
