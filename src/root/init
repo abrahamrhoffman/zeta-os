@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #!/bin/sh
 
 # Setup Initramfs
@@ -8,3 +9,9 @@ umount proc
 
 # Start next init
 exec /sbin/init
+=======
+#!/bin/python
+
+while True:
+  print("hi")
+>>>>>>> 75712136a6699ff66a7f0bf095fa7c266030bf88
