@@ -1,0 +1,11 @@
+# Boot-time / bootstrap config
+::sysinit:/etc/init.d/rcS
+
+# Singular tty
+tty1::respawn:/sbin/getty -nl /sbin/autologin 38400 tty1
+
+# Power Controls
+::restart:/etc/init.d/rc.shutdown
+::restart:/sbin/init
+::ctrlaltdel:/sbin/reboot
+::shutdown:/etc/init.d/rc.shutdown
