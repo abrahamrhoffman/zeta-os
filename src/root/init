@@ -1,6 +1,6 @@
 #!/bin/sh
-mount proc
-inodes=`grep MemFree /proc/meminfo | awk '{print $2/3}' | cut -d. -f1`
-mount / -o remount,size=90%,nr_inodes=$inodes
-umount proc
-exec /sbin/python
+dmesg -n 1
+mount -t devtmpfs none /dev
+mount -t proc none /proc
+mount -t sysfs none /sys
+setsid cttyhack /bin/sh

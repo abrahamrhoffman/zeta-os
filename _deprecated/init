@@ -13,8 +13,6 @@ umount proc
 mount proc
 
 # Read messages appended to proc
-
-
 grep -qw multivt /proc/cmdline && sed -i s/^#tty/tty/ /etc/inittab
 if ! grep -qw noembed /proc/cmdline; then
 
