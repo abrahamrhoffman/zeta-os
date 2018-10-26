@@ -49,8 +49,8 @@ class OSBuild(object):
     def _softlink(self):
         os.chdir(self._build_path + "/releases/testing")
         # Delete softlink if present
-        if os.path.isfile(self._sl1_path):
-            os.remove(self._sl1_path)
+        try: os.remove(self._sl1_path)
+        except: pass
         # Create softlink
         cmd = ("ln -s {} {} ".format(self._sl0_path,self._sl1_path))
         subprocess.call(cmd, shell=True)
