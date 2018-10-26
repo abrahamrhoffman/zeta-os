@@ -3,13 +3,13 @@ The zeta serverless operating system
 
 ```
 ........
-.  ....        Zeta-OS : A 50 MB FaaS OS
-  ....  .    Current Build: v0.01 [09-30-2018]
+.  ....          Zeta-OS : A 10 MB FaaS OS
+  ....  .    Current Build: v0.01 [10-26-2018]
  ........
 ```
 
 ### Features
-- Core : ~15MB
+- Core : ~10MB
 - Core + Extensions : ~25MB
 - Core + Extensions + Hardware Drivers : ~50MB
 - Kernel 4.14.10, 64-bit
