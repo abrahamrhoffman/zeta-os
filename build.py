@@ -16,6 +16,11 @@ class OSBuild(object):
 
     def _build_initramfs(self):
         os.chdir(self._build_path + "/src/root")
+        # Create Minimal Folder structure
+        dirs = ["dev", "proc", "sys"]
+        for ele in dirs:
+            if not os.path.exists(ele):
+                os.mkdir(ele)
         # Compress initramfs from root filesystem
         cmd = ("find | cpio -o -H newc | gzip -2 > {}"\
             .format(self._build_path + "/src/iso/boot/" + self._initramfs_name))
