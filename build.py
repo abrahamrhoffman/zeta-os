@@ -11,6 +11,8 @@ class OSBuild(object):
         self._dt = self._datetime.strftime('%m%d%Y-%H%M%S')
         self._build_path = os.getcwd()
         self._iso_path = ("../releases/testing/zeta-{}.iso".format(self._dt))
+        self._sl0_path = ("./releases/testing/zeta-{}.iso".format(self._dt))
+        self._sl1_path = ("./releases/testing/current-test.iso")
         self._iso_details = ("zeta")
         self._initramfs_name = ("zeta.gz")
 
@@ -45,13 +47,12 @@ class OSBuild(object):
         os.chdir(self._build_path)
 
     def _softlink(self):
-        os.chdir(self._build_path + "/releases/testing")
+        os.chdir(self._build_path)
         # Delete softlink if present
-        if os.path.isfile("current-test.iso"):
-            os.remove("current-test.iso")
+        if os.path.isfile(self._sl1_path):
+            os.remove(self._sl1_path)
         # Create softlink
-        cmd = ("ln -s {} {} ".format((self._iso_path.split("/")[-1]),
-                            "current-test.iso"))
+        cmd = ("ln -s {} {} ".format(self._sl0_path,self._sl1_path))
         subprocess.call(cmd, shell=True)
         os.chdir(self._build_path)
 
