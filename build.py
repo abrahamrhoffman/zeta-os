@@ -63,6 +63,7 @@ class OSBuild(object):
         self._build_initramfs()
         self._build_iso()
         self._cleanup()
+        self._softlink()
 
 def main():
     osb = OSBuild()
