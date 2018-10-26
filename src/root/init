@@ -1,7 +1,47 @@
 #!/bin/sh
+#####################
+# Zeta OS Base Init #
+########################
+# Author : Abe Hoffman #
+# Date   : 10-26-2018  #
+##################################################################
+# Description : This script acts as PID1 immediately after the   #
+#               initramfs is unpacked. Its sole purpose is to    #
+#               (perform as little work as possible) then hand-  #
+#               off control of PID1 to the next script,          #
+#               /sbin/init where the main userland boot-time     #
+#               work is done.                                    #
+##################################################################
+
+### Set printk kernel messages for the console to level 1 ###
+# [suppress all messages from the kernel (and its drivers) except panic
+# messages - output to the console only. Full printk messages are still
+# available in dmesg.]
 dmesg -n 1
+
+### Mount 'devtmpfs' ###
+# [devtmpfs is a file system with automated device nodes populated by the kernel
+# This means you don't have to have udev running or create a static /dev
+# layout with not present device nodes. Instead the kernel populates the
+# appropriate information based on the known devices.]
 mount -t devtmpfs none /dev
+
+## Mount 'proc' ##
+# [Virtual filesystem with runtime system information]
+# http://tldp.org/LDP/Linux-Filesystem-Hierarchy/html/proc.html
 mount -t proc none /proc
+
+## Mount 'sysfs' ##
+# [A pseudo file system provided by the Linux kernel that exports information
+#  about various kernel subsystems, hardware devices, and associated device
+#  drivers from the kernel's device model to user space]
 mount -t sysfs none /sys
+
+## Set PID1 (setsid) to the automatically detected console/tty ##
+# This line actually creates PID 1. Allowing the system to be boot-strapped.
+# setsid : https://linux.die.net/man/2/setsid
+# cttyhack : https://git.busybox.net/busybox/tree/shell/cttyhack.c
 setsid cttyhack /bin/sh
-exec /sbin/python -c "print 'hi'"
+
+## Pass Control of PID1 to /sbin/init ##
+exec /sbin/init
