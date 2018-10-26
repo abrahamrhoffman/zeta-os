@@ -42,6 +42,13 @@ class OSBuild(object):
                 (self._iso_path), ("./iso")))
         subprocess.call(cmd, shell=True)
         os.chmod(self._iso_path, 775)
+        # Delete softlink if present
+        if os.path.isfile("../releases/testing/current-test.iso"):
+            os.remove("../releases/testing/current-test.iso")
+        # Create softlink
+        cmd = ("ln -s {} {} ".format(self._iso_path,
+                            "../releases/testing/current-test.iso")
+        subprocess.call(cmd, shell=True)
         os.chdir(self._build_path)
 
     def _cleanup(self):
