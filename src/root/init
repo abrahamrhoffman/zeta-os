@@ -1,5 +1,5 @@
 #!/bin/sh
-dmesg -n 1
+dmesg -n 0
 mount -t devtmpfs none /dev
 mount -t proc none /proc
 mount -t sysfs none /sys
