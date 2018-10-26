@@ -47,7 +47,7 @@ class OSBuild(object):
             os.remove("../releases/testing/current-test.iso")
         # Create softlink
         cmd = ("ln -s {} {} ".format(self._iso_path,
-                            "../releases/testing/current-test.iso")
+                            "../releases/testing/current-test.iso"))
         subprocess.call(cmd, shell=True)
         os.chdir(self._build_path)
 
