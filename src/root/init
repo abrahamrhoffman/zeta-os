@@ -13,10 +13,10 @@
 #               work is done.                                    #
 ##################################################################
 
-mount proc
+mount -t proc none /proc
 inodes=`grep MemFree /proc/meminfo | awk '{print $2/3}' | cut -d. -f1`
 mount / -o remount,size=90%,nr_inodes=$inodes
-umount proc
+umount /proc
 
 ### Set printk kernel messages for the console to level 1 ###
 # [suppress all messages from the kernel (and its drivers) except panic
