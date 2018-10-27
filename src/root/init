@@ -13,16 +13,11 @@
 #               work is done.                                    #
 ##################################################################
 
-mount -t proc none /proc
-inodes=`grep MemFree /proc/meminfo | awk '{print $2/3}' | cut -d. -f1`
-mount / -o remount,size=90%,nr_inodes=$inodes
-umount /proc
-
 ### Set printk kernel messages for the console to level 1 ###
 # [suppress all messages from the kernel (and its drivers) except panic
 # messages - output to the console only. Full printk messages are still
 # available in dmesg.]
-#dmesg -n 1
+dmesg -n 1
 
 ### Mount 'devtmpfs' ###
 # [devtmpfs is a file system with automated device nodes populated by the kernel
@@ -34,21 +29,21 @@ umount /proc
 ## Mount 'proc' ##
 # [Virtual filesystem with runtime system information]
 # http://tldp.org/LDP/Linux-Filesystem-Hierarchy/html/proc.html
-#mount -t proc none /proc
+mount -t proc none /proc
 
 ## Mount 'sysfs' ##
 # [A pseudo file system provided by the Linux kernel that exports information
 #  about various kernel subsystems, hardware devices, and associated device
 #  drivers from the kernel's device model to user space]
-#mount -t sysfs none /sys
+mount -t sysfs none /sys
 
 ## Set (setsid) PID1 to the automatically detected (cttyhack) console/tty ##
 # This line actually creates PID 1. Allowing the system to be boot-strapped.
 # setsid : https://linux.die.net/man/2/setsid
 # cttyhack : https://git.busybox.net/busybox/tree/shell/cttyhack.c
-#setsid cttyhack /bin/sh
+setsid cttyhack /bin/sh
 
 ## Pass Control of PID1 to /sbin/init ##
 # /sbin/init is a softlink that points back to /bin/busybox
 # When using BusyBox as init, a file (/etc/init.d/rcS) is expected.
-#exec switch_root / /sbin/python
+exec /bin/sh
