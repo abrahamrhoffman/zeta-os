@@ -9,15 +9,15 @@
 #               passes control to it.                            #
 ##################################################################
 
-# Test if /proc/cmdline is a regular file. Otherwise, mount proc.
-[ -f /proc/cmdline ] || /bin/mount /proc
-
-# Remount rootfs rw
-/bin/mount -o remount,rw /
-
-# Mount system devices from /etc/fstab
-/bin/mount -a
-
-clear
-
-/etc/init.d/tc-config
+## # Test if /proc/cmdline is a regular file. Otherwise, mount proc.
+## [ -f /proc/cmdline ] || /bin/mount /proc
+## 
+## # Remount rootfs rw
+## /bin/mount -o remount,rw /
+## 
+## # Mount system devices from /etc/fstab
+## /bin/mount -a
+## 
+## clear
+## 
+## /etc/init.d/tc-config
