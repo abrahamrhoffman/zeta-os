@@ -31,18 +31,11 @@ mount -t devtmpfs none /dev
 # http://tldp.org/LDP/Linux-Filesystem-Hierarchy/html/proc.html
 mount -t proc none /proc
 
-## Remount / with 90% of memory ##
-inodes=`grep MemFree /proc/meminfo | awk '{print $2/3}' | cut -d. -f1`
-mount / -o remount,size=90%,nr_inodes=$inodes
-
 ## Mount 'sysfs' ##
 # [A pseudo file system provided by the Linux kernel that exports information
 #  about various kernel subsystems, hardware devices, and associated device
 #  drivers from the kernel's device model to user space]
 mount -t sysfs none /sys
-
-## Remount root as read-write ##
-mount -o remount,rw /
 
 ## Set (setsid) PID1 to the automatically detected (cttyhack) console/tty ##
 # This line actually creates PID 1. Allowing the system to be boot-strapped.
@@ -53,4 +46,4 @@ setsid cttyhack /bin/sh
 ## Pass Control of PID1 to /sbin/init ##
 # /sbin/init is a softlink that points back to /bin/busybox
 # When using BusyBox as init, a file (/etc/init.d/rcS) is expected.
-exec /sbin/init
+exec switch_root / /sbin/python
