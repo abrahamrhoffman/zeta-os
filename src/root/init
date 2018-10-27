@@ -46,4 +46,4 @@ setsid cttyhack /bin/sh
 ## Pass Control of PID1 to /sbin/init ##
 # /sbin/init is a softlink that points back to /bin/busybox
 # When using BusyBox as init, a file (/etc/init.d/rcS) is expected.
-#exec /bin/sh
+exec /sbin/init
