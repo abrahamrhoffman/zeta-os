@@ -13,7 +13,15 @@
 #               work is done.                                    #
 ##################################################################
 
-# Core init commands
-/etc/init.sh
-# Filesystem and Main init
-exec /etc/filesystem.sh
+dmesg -n 1
+mount -t devtmpfs none /dev
+mount -t proc none /proc
+mount -t sysfs none /sys
+setsid cttyhack /bin/sh
+exec /sbin/init
+
+
+## Core init commands
+#/etc/init.sh
+## Filesystem and Main init
+#exec /etc/filesystem.sh
