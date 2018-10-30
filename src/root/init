@@ -32,10 +32,13 @@ mkdir /mnt/dev
 mkdir /mnt/sys
 mkdir /mnt/proc
 #mkdir /mnt/tmp
-mount --move /dev /mnt/dev
-mount --move /sys /mnt/sys
-mount --move /proc /mnt/proc
+#mount --move /dev /mnt/dev
+#mount --move /sys /mnt/sys
+#mount --move /proc /mnt/proc
 #mount --move /tmp /mnt/tmp
+umount /dev
+umount /sys
+umount /proc
 exec switch_root /mnt /bin/busybox
 
 
