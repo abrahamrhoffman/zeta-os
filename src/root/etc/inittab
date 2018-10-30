@@ -1,3 +1,4 @@
+::sysinit:/bin/getty 38400 tty1
 ::restart:/sbin/init
 ::ctrlaltdel:/sbin/reboot
 ::once:cat /etc/motd
