@@ -36,9 +36,9 @@ mkdir /mnt/proc
 #mount --move /sys /mnt/sys
 #mount --move /proc /mnt/proc
 #mount --move /tmp /mnt/tmp
-umount /dev
-umount /sys
-umount /proc
+#umount /dev
+#umount /sys
+#umount /proc
 exec switch_root /mnt /bin/busybox
 
 
