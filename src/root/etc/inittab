@@ -1,0 +1,4 @@
+::restart:/sbin/init
+::ctrlaltdel:/sbin/reboot
+::once:cat /etc/motd
+::respawn:/bin/cttyhack /bin/sh
