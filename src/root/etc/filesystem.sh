@@ -1,7 +1,5 @@
 #!/bin/sh
 
-mkdir /mnt
-
 mount -t tmpfs none /mnt
 
 mkdir /mnt/dev
