@@ -14,8 +14,8 @@
 ##################################################################
 
 dmesg -n 1
-mount -t devtmpfs none /dev
-mount -t proc none /proc
-mount -t sysfs none /sys
-mount -t tmpfs none /x
+mount -n -t devtmpfs devtmpfs /dev
+mount -n -t proc     proc     /proc
+mount -n -t sysfs    sysfs    /sys
+mount -n -t tmpfs    tmpfs    /x
 setsid cttyhack /bin/sh
