@@ -1,6 +1,0 @@
-#::sysinit:/bin/getty 38400 tty1
-#::restart:/sbin/init
-#::ctrlaltdel:/sbin/reboot
-#::once:cat /etc/motd
-#::respawn:/bin/cttyhack /bin/sh
-tty1::respawn:/sbin/agetty 38400 ttyt
