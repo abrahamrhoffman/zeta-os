@@ -8,6 +8,7 @@ class OSBuild(object):
 
     def __init__(self):
         self._datetime = datetime.datetime.now()
+        self._pubdate = datetime.datetime.now().strftime("%m-%d-%Y")
         self._dt = self._datetime.strftime('%m%d%Y-%H%M%S')
         self._build_path = os.getcwd()
         self._iso_path = ("../releases/testing/zeta-{}.iso".format(self._dt))
@@ -59,11 +60,18 @@ class OSBuild(object):
     def _cleanup(self):
         os.remove(self._build_path + "/src/iso/boot/" + self._initramfs_name)
 
+    def _stamp(self):
+        with open("./README.md") as f:
+            aFile = f.read()
+            aFile[139:149] = self._pubdate
+            aFile.write()
+
     def run(self):
         self._build_initramfs()
         self._build_iso()
         self._cleanup()
         self._softlink()
+        self._stamp()
 
 def main():
     osb = OSBuild()
