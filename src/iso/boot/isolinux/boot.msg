@@ -1,6 +1,6 @@
 
   ........
   .  ....         Zeta-OS : An in-RAM FaaS OS
-    ....  .    Current Build: v0.05 [11-08-2018]
+    ....  .    Current Build: v0.06 [11-08-2018]
    ........
 

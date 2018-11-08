@@ -63,42 +63,21 @@ class OSBuild(object):
         os.remove(self._build_path + "/src/iso/boot/" + self._initramfs_name)
 
     def _stamp(self):
-        # Update README.md datestamp
-        f = open("README.md", "r+")
-        aFile = f.read()
-        aFile = aFile.split("\n")
-        for ix, ele in enumerate(aFile):
-            if ("Current Build") in ele:
-                ele = ("    ....  .    Current Build: v{} [{}]"\
-                        .format(self._build_version, self._pubdate))
-                aFile[ix] = ele
-        f.seek(0);f.truncate()
-        f.write("\n".join(aFile))
-        f.close()
-        # Update ISOLINUX boot.msg
-        f = open("./src/iso/boot/isolinux/boot.msg", "r+")
-        aFile = f.read()
-        aFile = aFile.split("\n")
-        for ix, ele in enumerate(aFile):
-            if ("Current Build") in ele:
-                ele = ("    ....  .    Current Build: v{} [{}]"\
-                        .format(self._build_version, self._pubdate))
-                aFile[ix] = ele
-        f.seek(0);f.truncate()
-        f.write("\n".join(aFile))
-        f.close()
-        # Update Message of the Day
-        f = open("./src/root/etc/motd", "r+")
-        aFile = f.read()
-        aFile = aFile.split("\n")
-        for ix, ele in enumerate(aFile):
-            if ("Current Build") in ele:
-                ele = ("    ....  .    Current Build: v{} [{}]"\
-                        .format(self._build_version, self._pubdate))
-                aFile[ix] = ele
-        f.seek(0);f.truncate()
-        f.write("\n".join(aFile))
-        f.close()
+        someFiles = ["README.md", "./src/iso/boot/isolinux/boot.msg",
+                     "./src/root/etc/motd"]
+        # Update README.md, MOTD, and boot.msg
+        for F in someFiles:
+            f = open(F, "r+")
+            aFile = f.read()
+            f.close();os.remove(F)
+            aFile = aFile.split("\n")
+            for ix, ele in enumerate(aFile):
+                if ("Current Build") in ele:
+                    ele = ("    ....  .    Current Build: v{} [{}]"\
+                            .format(self._build_version, self._pubdate))
+                    aFile[ix] = ele
+            f = open(F, "w")
+            f.write("\n".join(aFile));f.close()
 
     def run(self):
         self._build_initramfs()
