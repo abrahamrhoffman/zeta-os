@@ -1,4 +1,5 @@
 import subprocess
+import argparse
 import datetime
 import time
 import os
@@ -6,7 +7,8 @@ import os
 class OSBuild(object):
 
 
-    def __init__(self):
+    def __init__(self, build_version):
+        self._build_version = build_version
         self._datetime = datetime.datetime.now()
         self._pubdate = datetime.datetime.now().strftime("%m-%d-%Y")
         self._dt = self._datetime.strftime('%m%d%Y-%H%M%S')
@@ -61,20 +63,56 @@ class OSBuild(object):
         os.remove(self._build_path + "/src/iso/boot/" + self._initramfs_name)
 
     def _stamp(self):
-        with open("./README.md") as f:
-            aFile = f.read()
-            aFile[139:149] = self._pubdate
-            aFile.write()
+        # Update README.md datestamp
+        f = open("README.md", "r+")
+        aFile = f.read()
+        aFile = aFile.split("\n")
+        for ix, ele in enumerate(aFile):
+            if ("Current Build") in ele:
+                ele = ("    ....  .    Current Build: v{} [{}]"\
+                        .format(self._build_version, self._pubdate))
+                aFile[ix] = ele
+        f.seek(0);f.truncate()
+        f.write("\n".join(aFile))
+        f.close()
+        # Update ISOLINUX boot.msg
+        f = open("./src/iso/boot/isolinux/boot.msg", "r+")
+        aFile = f.read()
+        aFile = aFile.split("\n")
+        for ix, ele in enumerate(aFile):
+            if ("Current Build") in ele:
+                ele = ("    ....  .    Current Build: v{} [{}]"\
+                        .format(self._build_version, self._pubdate))
+                aFile[ix] = ele
+        f.seek(0);f.truncate()
+        f.write("\n".join(aFile))
+        f.close()
+        # Update Message of the Day
+        f = open("./src/root/etc/motd", "r+")
+        aFile = f.read()
+        aFile = aFile.split("\n")
+        for ix, ele in enumerate(aFile):
+            if ("Current Build") in ele:
+                ele = ("    ....  .    Current Build: v{} [{}]"\
+                        .format(self._build_version, self._pubdate))
+                aFile[ix] = ele
+        f.seek(0);f.truncate()
+        f.write("\n".join(aFile))
+        f.close()
 
     def run(self):
-        self._build_initramfs()
-        self._build_iso()
-        self._cleanup()
-        self._softlink()
+#        self._build_initramfs()
+#        self._build_iso()
+#        self._cleanup()
+#        self._softlink()
         self._stamp()
 
 def main():
-    osb = OSBuild()
+    parser = argparse.ArgumentParser()
+    required = parser.add_argument_group('Required arguments')
+    required.add_argument('-b', '--build', action='store', help='Build version. Ex: 1.20', required=True)
+    args = parser.parse_args()
+    osb = OSBuild(args.build)
     osb.run()
 
 if __name__ == "__main__":
