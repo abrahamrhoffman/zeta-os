@@ -101,10 +101,10 @@ class OSBuild(object):
         f.close()
 
     def run(self):
-#        self._build_initramfs()
-#        self._build_iso()
-#        self._cleanup()
-#        self._softlink()
+        self._build_initramfs()
+        self._build_iso()
+        self._cleanup()
+        self._softlink()
         self._stamp()
 
 def main():
