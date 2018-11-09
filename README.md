@@ -4,7 +4,7 @@ The zeta serverless operating system
 ```
   ........
   .  ....         Zeta-OS : An in-RAM FaaS OS
-    ....  .    Current Build: v0.06 [11-08-2018]
+    ....  .    Current Build: v0.07 [11-09-2018]
    ........
 ```
 
