@@ -90,7 +90,9 @@ class OSBuild(object):
 def main():
     parser = argparse.ArgumentParser()
     required = parser.add_argument_group('Required arguments')
-    required.add_argument('-b', '--build', action='store', help='Build version. Ex: 1.20', required=True)
+    required.add_argument('-b', '--build', action='store',
+                                           help='Build version. Ex: 1.20',
+                                           required=True)
     args = parser.parse_args()
     osb = OSBuild(args.build)
     osb.run()
